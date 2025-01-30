@@ -6,7 +6,6 @@ import com.alura.forumhub.domain.resposta.Resposta;
 import com.alura.forumhub.domain.usuario.Usuario;
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.time.LocalDateTime;
 import java.util.Set;
 
@@ -27,7 +26,7 @@ public class Topico {
 
     private String mensagem;
 
-    private LocalDateTime dataCriacao;
+    private LocalDateTime dataCriacao = LocalDateTime.now();
 
     @ManyToOne
     private Usuario autor;

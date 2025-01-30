@@ -1,12 +1,12 @@
 package com.alura.forumhub.controller;
 
-import com.alura.forumhub.dto.topico.AtualizarTopicoDTO;
+import com.alura.forumhub.dto.shared.AtualizarTopicoOuRespostaDTO;
 import com.alura.forumhub.dto.topico.CriarTopicoDTO;
-import com.alura.forumhub.dto.topico.ResponseTopicoFullDTO;
+import com.alura.forumhub.dto.topico.ResponseTopicoExtendedDTO;
 import com.alura.forumhub.dto.topico.ResponseTopicoShortDTO;
 import com.alura.forumhub.service.TopicoService;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -16,10 +16,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/topicos")
+@RequiredArgsConstructor
 public class TopicoController {
 
-    @Autowired
-    private TopicoService service;
+    private final TopicoService service;
 
     @PostMapping
     public ResponseEntity<ResponseTopicoShortDTO> criarTopico(@RequestBody @Valid CriarTopicoDTO dto) {
@@ -41,14 +41,14 @@ public class TopicoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ResponseTopicoFullDTO> recuperarTopico(@PathVariable Long id) {
-        ResponseTopicoFullDTO topico = service.recuperar(id);
+    public ResponseEntity<ResponseTopicoExtendedDTO> recuperarTopico(@PathVariable Long id) {
+        ResponseTopicoExtendedDTO topico = service.recuperar(id);
 
         return ResponseEntity.ok().body(topico);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ResponseTopicoShortDTO> atualizarTopico(@PathVariable long id, @RequestBody AtualizarTopicoDTO dto) {
+    public ResponseEntity<ResponseTopicoShortDTO> atualizarTopico(@PathVariable long id, @RequestBody AtualizarTopicoOuRespostaDTO dto) {
         ResponseTopicoShortDTO response = service.atualizarTopico(id, dto);
 
         return ResponseEntity.ok().body(response);

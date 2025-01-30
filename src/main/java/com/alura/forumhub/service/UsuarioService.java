@@ -7,7 +7,7 @@ import com.alura.forumhub.dto.usuario.ResponseUsuarioDTO;
 import com.alura.forumhub.exception.usuario.EmailJaEmUsoException;
 import com.alura.forumhub.repository.UsuarioRepository;
 import com.alura.forumhub.security.PasswordUtil;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -16,9 +16,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class UsuarioService implements UserDetailsService {
-    @Autowired
-    UsuarioRepository repository;
+    private final UsuarioRepository repository;
 
     public ResponseUsuarioDTO cadastrar(CadastrarUsuarioDTO dto) {
         boolean emailJaCadastrado = repository.existsByEmail(dto.email());

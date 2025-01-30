@@ -4,7 +4,7 @@ import com.alura.forumhub.dto.curso.CriarCursoDTO;
 import com.alura.forumhub.dto.curso.ResponseCursoDTO;
 import com.alura.forumhub.service.CursoService;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
@@ -16,10 +16,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("cursos")
+@RequiredArgsConstructor
 public class CursoController {
 
-    @Autowired
-    CursoService service;
+    private final CursoService service;
 
 
     @Secured("ROLE_ADMIN")
@@ -35,6 +35,15 @@ public class CursoController {
 
         return ResponseEntity.created(location).body(response);
     }
+
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ResponseCursoDTO> recuperarCurso(@PathVariable Long id){
+        ResponseCursoDTO curso = service.recuperar(id);
+        return ResponseEntity.status(HttpStatus.OK).body(curso);
+    }
+
+
 
 
     @GetMapping

@@ -6,7 +6,7 @@ import com.alura.forumhub.dto.resposta.ResponseRespostaShortDTO;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public record ResponseTopicoFullDTO(
+public record ResponseTopicoExtendedDTO(
         Long id,
         String titulo,
         String mensagem,
@@ -15,7 +15,7 @@ public record ResponseTopicoFullDTO(
         LocalDateTime criadoEm,
         List<ResponseRespostaShortDTO> respostas
 ) {
-    public ResponseTopicoFullDTO(Topico topico) {
+    public ResponseTopicoExtendedDTO(Topico topico) {
         this(topico.getId(),
                 topico.getTitulo(),
                 topico.getMensagem(),

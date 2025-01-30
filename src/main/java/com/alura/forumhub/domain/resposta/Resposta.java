@@ -2,6 +2,7 @@ package com.alura.forumhub.domain.resposta;
 
 import com.alura.forumhub.domain.topico.Topico;
 import com.alura.forumhub.domain.usuario.Usuario;
+import com.alura.forumhub.dto.resposta.CriarRespostaDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -23,7 +24,7 @@ public class Resposta {
 
     private String mensagem;
 
-    private LocalDateTime dataCriacao;
+    private LocalDateTime dataCriacao = LocalDateTime.now();
 
     @ManyToOne
     private Usuario autor;
@@ -31,4 +32,11 @@ public class Resposta {
     @ManyToOne
     private Topico topico;
 
+
+    public Resposta(CriarRespostaDTO dto, Usuario autor, Topico topico) {
+        this.titulo = dto.titulo();
+        this.mensagem = dto.mensagem();
+        this.autor =autor;
+        this.topico = topico;
+    }
 }

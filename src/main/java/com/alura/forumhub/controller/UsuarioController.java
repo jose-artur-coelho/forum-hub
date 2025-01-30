@@ -4,7 +4,7 @@ import com.alura.forumhub.dto.usuario.CadastrarUsuarioDTO;
 import com.alura.forumhub.dto.usuario.ResponseUsuarioDTO;
 import com.alura.forumhub.service.UsuarioService;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
@@ -15,10 +15,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("usuarios")
+@RequiredArgsConstructor
 public class UsuarioController {
 
-    @Autowired
-    UsuarioService service;
+    private final UsuarioService service;
 
     @PostMapping
     public ResponseEntity<ResponseUsuarioDTO> cadastrarUsuario(@RequestBody @Valid CadastrarUsuarioDTO dto) {
