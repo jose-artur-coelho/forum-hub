@@ -5,7 +5,7 @@
 Projeto de um forúm virtual desenvolvido com spring boot
 desenvolvido no programa ONE parceria da Alura com a Oracle.
 
-# Funcionalidades:
+## Funcionalidades:
 
 - Cadastramento de usuários;
 - Autorização via JWT;
@@ -13,5 +13,5 @@ desenvolvido no programa ONE parceria da Alura com a Oracle.
 - CRUD de tópicos;
 - CRUD de respostas;
 
-# Links:
+## Links:
 - [Trello do desafio](https://trello.com/b/OKIUKgxe/forum-hub-challenge-back-end)
